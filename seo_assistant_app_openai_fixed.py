@@ -4,8 +4,7 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 import os
 
-# Use secrets from Streamlit Cloud
-os.environ['OPENAI_API_KEY'] = st.secrets.get("OPENAI_API_KEY", "your-openai-api-key")
+os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
 # Initialize GPT-4 model
 llm = ChatOpenAI(temperature=0.7, model_name="gpt-4")
