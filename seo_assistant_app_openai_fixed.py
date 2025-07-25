@@ -1,5 +1,6 @@
 import streamlit as st
-from langchain_openai.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
+from openai import OpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 import os
@@ -7,7 +8,24 @@ import os
 os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
 # Initialize GPT-4 model
-llm = ChatOpenAI(temperature=0.7, model_name="gpt-4")
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+
+llm = ChatOpenAI(
+    temperature=0.7,
+    model="gpt-4",
+    client=client
+)
+
+from langchain_openai import ChatOpenAI
+from openai import OpenAI
+
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+
+llm = ChatOpenAI(
+    temperature=0.7,
+    model="gpt-4",
+    client=client
+)
 
 # Prompt template
 template = """You are an AI SEO Assistant helping optimize web content for better visibility in both traditional search engines (like Google) and AI-generated responses (like ChatGPT).
