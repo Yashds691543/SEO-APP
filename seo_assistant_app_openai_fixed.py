@@ -5,15 +5,13 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 import os
 
+
 os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
-# Initialize GPT-4 model
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
-
 llm = ChatOpenAI(
-    temperature=0.7,
     model="gpt-4",
-    client=client
+    temperature=0.7,
+    api_key=st.secrets["OPENAI_API_KEY"]
 )
 
 from langchain_openai import ChatOpenAI
