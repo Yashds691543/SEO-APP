@@ -8,10 +8,8 @@ import os
 os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
 # Initialize the LLM (GPT-4)
-llm = ChatOpenAI(
-    model="gpt-4",
-    temperature=0.7
-)
+
+llm = ChatOpenAI(model_name="gpt-4", temperature=0.7)
 
 # Set page title and layout
 st.set_page_config(page_title="SEO Assistant", layout="centered")
