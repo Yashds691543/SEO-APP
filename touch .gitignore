@@ -1,6 +1,11 @@
-# Ignore secrets
-.streamlit/secrets.toml
-__pycache__/
-*.pyc
-.env
-.streamlit/secrets.toml
+touch .gitignore
+
+
+
+
+git rm --cached .streamlit/secrets.toml
+
+
+git add .gitignore
+git commit -m "Ignore secrets.toml"
+git push
