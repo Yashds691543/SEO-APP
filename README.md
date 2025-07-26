@@ -1,5 +1,6 @@
 Project Overview: https://huggingface.co/spaces/yashds1543/SEO_APP
-This Hugging Face Space demonstrates a lightweight SEO Assistant built using Gradio and OpenAI's language models. Users can input SEO-related prompts and benchmark outputs from different LLMs to compare creativity, conciseness, and keyword usage.
+
+-This Hugging Face Space demonstrates a lightweight SEO Assistant built using Gradio and OpenAI's language models. Users can input SEO-related prompts and benchmark outputs from different LLMs to compare creativity, conciseness, and keyword usage.
  Features
 • Input your own SEO prompt
 • Generate output using OpenAI’s GPT-3.5 or GPT-4
