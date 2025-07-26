@@ -16,4 +16,12 @@ Setup Instructions
 3. Add your OpenAI API key in the Secrets tab on Hugging Face:
    - KEY: `OPENAI_API_KEY`
    - VALUE: your actual key
-<img width="468" height="422" alt="image" src="https://github.com/user-attachments/assets/5358c707-1d30-4a08-9ddf-7ee69f407129" />
+
+Files Included
+• `app.py` – main application code
+• `requirements.txt` – Python dependencies
+• `README.md` – project overview for Hugging Face
+
+Demo Screenshot
+You can upload a screenshot to this repo to display a visual preview of the working app. To do this, add an image file to the root and update this README with the markdown syntax:
+
