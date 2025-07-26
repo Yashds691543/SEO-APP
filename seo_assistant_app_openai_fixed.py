@@ -1,42 +1,29 @@
-import streamlit as st
-from langchain_openai import ChatOpenAI
-from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain
+import gradio as gr
+from openai import OpenAI
 import os
 
-# Securely load API key from Streamlit secrets
-os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+# Get your API key from Hugging Face secrets
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# Initialize GPT-4 model
-llm = ChatOpenAI(model_name="gpt-4", temperature=0.7)
+def optimize_seo(content):
+    prompt = f"""You are an expert SEO assistant. Improve this content for better ranking:
+    
+    {content}
+    """
+    response = client.chat.completions.create(
+        model="gpt-4",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.7
+    )
+    return response.choices[0].message.content
 
-# Define prompt
-prompt = PromptTemplate(
-    input_variables=["query"],
-    template="""
-You are an AI SEO Assistant helping optimize web content.
-Your goal is to improve ranking, keyword use, readability, and structure.
-
-Input: {query}
-
-Helpful SEO Feedback:
-"""
+iface = gr.Interface(
+    fn=optimize_seo,
+    inputs=gr.Textbox(lines=10, placeholder="Paste your content here..."),
+    outputs="text",
+    title="LLM SEO Optimizer",
+    description="Enter any blog or web content, and this app will rewrite it with better SEO quality using GPT-4."
 )
 
-# Create chain
-chain = LLMChain(llm=llm, prompt=prompt)
-
-# UI
-st.set_page_config(page_title="SEO Assistant")
-st.title("🔍 Internal SEO Assistant")
-
-user_input = st.text_area("Enter SEO content:", height=200)
-
-if st.button("Generate SEO Suggestions"):
-    if user_input:
-        with st.spinner("Generating..."):
-            response = chain.run(query=user_input)
-            st.success("Suggestions:")
-            st.write(response)
-    else:
-        st.warning("Enter some text.")
+if __name__ == "__main__":
+    iface.launch()
